@@ -386,7 +386,7 @@ const ProjectEditor = () => {
     if (!token) return;
 
     // Connect to your backend socket server
-    const newSocket = io("http://localhost:5000", {
+    const newSocket = io("http://localhost", {
       auth: { token },
       transports: ["websocket", "polling"],
     });

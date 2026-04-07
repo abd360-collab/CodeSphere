@@ -1,6 +1,7 @@
 import { io } from "socket.io-client";
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || "http://localhost:5000";
+// Point it to NGINX (Port 80) just like your API calls!
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || "http://localhost";
 
 export const createSocket = (token) => {
   return io(SOCKET_URL, {

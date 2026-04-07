@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -70,16 +69,6 @@ app.get('/api/health', (req, res) => {
 // Socket.IO handlers
 setupSocketHandlers(io);
 
-// MongoDB connection
-// process.env.MONGODB_URI || 
-// mongoose.connect('mongodb://localhost:27017/collaborative-code-editor')
-//   .then(() => console.log('✅ Connected to MongoDB'))
-//   .catch((error) => console.error('❌ MongoDB connection error:', error));
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log("Connected to DB:", process.env.MONGODB_URI))
-  .catch(err => console.log(err));
-
-// Start server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);

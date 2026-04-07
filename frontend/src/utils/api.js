@@ -1,6 +1,6 @@
 import axios from 'axios'; // the HTTP client used to talk to the backend.
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || "";
 //Picks the API server address from an environment variable for production,
 //  falling back to a local dev server on port 5000.
 
