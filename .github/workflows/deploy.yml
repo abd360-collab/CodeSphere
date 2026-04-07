@@ -1,0 +1,36 @@
+name: Deploy Backend to AWS
+
+# This tells GitHub: "Run this every time I push code to the 'main' branch"
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. This copies your code from GitHub into the temporary GitHub "robot" runner
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. This uses the keys we saved in Step 5 to log into your AWS server
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # This is the actual list of commands the robot will type into your AWS terminal
+          script: |
+            # Create an 'app' folder if it doesn't exist and enter it
+            mkdir -p ~/app && cd ~/app
+            
+            # If the code is already there, pull the latest. If not, clone it.
+            if [ -d ".git" ]; then 
+              git pull origin main; 
+            else 
+              git clone https://github.com/${{ github.repository }} .; 
+            fi
+            
+            # Tell Docker to build the images and start the containers in the background
+            docker compose up -d --build
