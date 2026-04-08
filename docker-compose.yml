@@ -21,17 +21,9 @@ services:
       - db
     env_file:
       - ./backend/.env
-    command: sh -c "npx prisma migrate deploy && npm start"
-
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
     ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
-      - backend # Removed frontend from here
+      - "5000:5000"  # <--- This opens the window for the Host Nginx
+    command: sh -c "npx prisma migrate deploy && npm start"
 
 volumes:
   pgdata:

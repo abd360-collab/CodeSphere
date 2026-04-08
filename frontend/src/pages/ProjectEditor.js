@@ -71,7 +71,7 @@ const ProjectEditor = () => {
     if (!token) return;
 
     // Connect to your backend socket server
-    const newSocket = io("http://13.63.166.40/api", {
+    const newSocket = io("https://codesphere-api.duckdns.org", {
       auth: { token },
       transports: ["websocket", "polling"],
     });

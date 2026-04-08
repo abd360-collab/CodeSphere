@@ -18,14 +18,12 @@ const server = http.createServer(app);
 // Logging
 app.use(morgan('dev')); // 'dev' is cleaner for development
 
-// ✅ FIXED: Proper CORS Configuration
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.FRONTEND_URL 
-    : 'http://localhost:3000',
-  credentials: true, // ⭐ Critical for auth tokens
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: [
+    'http://localhost:3000', 
+    'https://code-sphere-gcu6.vercel.app' 
+  ],
+  credentials: true 
 }));
 
 // Parse JSON bodies
