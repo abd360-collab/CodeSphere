@@ -1,81 +1,48 @@
-🚀 CodeSphere: Collaborative Code Editor
-A real-time, full-stack collaborative code editor that allows multiple users to write, run, and discuss code in a synchronized environment.
+# 🚀 CodeSphere
 
-✨ Key Features
-Real-time Collaboration: Synchronized code editing across multiple clients.
+### *Collaborative Real-time Code Editor*
 
-Integrated Code Execution: Run code snippets directly within the editor.
+[![React](https://img.shields.io/badge/Frontend-React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![Node](https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/Infrastructure-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![AWS](https://img.shields.io/badge/Cloud-AWS_EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
 
-Live Project Chat: Real-time chat system for team communication while coding.
+---
 
-Secure Authentication: User signup and login system.
+## 📖 Overview
 
-Persistent Storage: Projects and user data saved in a PostgreSQL database.
+**CodeSphere** is a professional-grade, real-time collaborative workspace. Designed for seamless pair programming, it combines a synchronized code editor with a live chat system, all running within a high-performance, containerized production environment.
 
-🛠️ Tech Stack
-Frontend
-React.js & Tailwind CSS for a responsive UI.
+---
 
-Socket.io-client for real-time WebSocket communication.
+## ✨ Key Features
 
-Vercel for high-performance frontend hosting.
+* **⚡ Real-time Sync:** Powered by **Socket.io** for sub-100ms synchronization.
+* **💬 Integrated Chat:** Collaborate with your team without leaving the IDE.
+* **🛡️ Production Grade:** Secured with **SSL/TLS** and managed via an **Nginx** reverse proxy.
+* **🐳 Microservices:** Fully containerized using **Docker** for consistent environments.
+* **🚀 CI/CD Ready:** Automated deployment pipeline via **GitHub Actions**.
 
-Backend
-Node.js & Express API.
+---
 
-Socket.io for the real-time websocket server.
+## 🛠️ System Architecture
 
-Prisma ORM for interacting with the database.
+### Production Workflow
+1.  **Client:** Securely connects via **HTTPS/WSS** to the cloud.
+2.  **Reverse Proxy (Nginx):** Acts as the gatekeeper on the **AWS EC2** host, handling SSL termination.
+3.  **Docker Network:** Traffic is routed to internal containers:
+    * **Backend:** Node.js API & WebSocket Server (Port 5000)
+    * **Database:** PostgreSQL (Port 5432)
 
-PostgreSQL for relational data storage.
+---
 
-DevOps & Deployment
-Docker & Docker Compose: Containerized microservices architecture.
+## 📂 Project Structure
 
-AWS (EC2): Production backend hosting on Ubuntu.
-
-Nginx: High-performance reverse proxy with SSL (Certbot).
-
-GitHub Actions: CI/CD pipeline for automated deployments.
-
-🏗️ Architecture Overview
-The project is deployed using a professional production architecture:
-
-Frontend: Hosted on Vercel, communicating over HTTPS/WSS.
-
-Proxy Layer: Host-level Nginx on AWS handles SSL termination and redirects traffic to the Docker network.
-
-Docker Network: * Backend Container: Running on Port 5000.
-
-Database Container: PostgreSQL running on Port 5432.
-
-🚀 Getting Started
-Prerequisites
-Node.js (v18+)
-
-Docker & Docker Compose
-
-Local Installation
-Clone the repository:
-
-Bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
-Setup Environment Variables:
-Create a .env file in the backend folder:
-
-Code snippet
-DATABASE_URL="postgresql://user:password@localhost:5432/codesphere"
-PORT=5000
-Run with Docker:
-
-Bash
-docker compose up --build
-Frontend Setup:
-
-Bash
-cd frontend
-npm install
-npm start
-📝 License
-This project is for educational purposes as part of a full-stack engineering portfolio.
+```text
+├── backend/            # Express & WebSocket Server
+│   ├── prisma/         # Schema & Migrations
+│   └── server.js       # API Entry Point
+├── frontend/           # React App (Vercel)
+│   ├── src/components/ # Reusable UI components
+│   └── src/pages/      # Dashboard & Editor
+└── docker-compose.yml  # Container Orchestration
