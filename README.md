@@ -1,93 +1,81 @@
-# Collaborative Code Editor
+🚀 CodeSphere: Collaborative Code Editor
+A real-time, full-stack collaborative code editor that allows multiple users to write, run, and discuss code in a synchronized environment.
 
-A real-time collaborative code editor with chat functionality built using the MERN stack (MongoDB, Express, React, Node.js) and Socket.IO.
+✨ Key Features
+Real-time Collaboration: Synchronized code editing across multiple clients.
 
-## Features
+Integrated Code Execution: Run code snippets directly within the editor.
 
-- **User Authentication**: JWT-based authentication with bcrypt password hashing
-- **Project Management**: Create and manage coding rooms with role-based access
-- **Real-time Collaboration**: Live code editing using Monaco Editor and Socket.IO
-- **Chat System**: Real-time messaging within projects
-- **Role-based Permissions**: Owner, Editor, and Viewer roles with different access levels
+Live Project Chat: Real-time chat system for team communication while coding.
 
-## Tech Stack
+Secure Authentication: User signup and login system.
 
-### Backend
-- Node.js + Express
-- MongoDB with Mongoose
-- Socket.IO for real-time communication
-- JWT for authentication
-- bcryptjs for password hashing
+Persistent Storage: Projects and user data saved in a PostgreSQL database.
 
-### Frontend
-- React with React Router
-- Tailwind CSS for styling
-- Monaco Editor for code editing
-- Socket.IO client for real-time features
-- React Toastify for notifications
+🛠️ Tech Stack
+Frontend
+React.js & Tailwind CSS for a responsive UI.
 
-## Project Structure
+Socket.io-client for real-time WebSocket communication.
 
-```
-collaborative-code-editor/
-├── backend/                 # Express server
-│   ├── models/             # MongoDB schemas
-│   ├── routes/             # API routes
-│   ├── middleware/         # Authentication middleware
-│   ├── controllers/        # Route controllers
-│   └── socket/             # Socket.IO handlers
-├── frontend/               # React application
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── pages/          # Page components
-│   │   ├── hooks/          # Custom hooks
-│   │   ├── context/        # React context
-│   │   └── utils/          # Utility functions
-└── package.json           # Root package.json with scripts
-```
+Vercel for high-performance frontend hosting.
 
-## Installation
+Backend
+Node.js & Express API.
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm run install-all
-   ```
+Socket.io for the real-time websocket server.
 
-3. Set up environment variables:
-   - Copy `backend/.env.example` to `backend/.env`
-   - Add your MongoDB connection string and JWT secret
+Prisma ORM for interacting with the database.
 
-4. Run the application:
-   ```bash
-   npm run dev
-   ```
+PostgreSQL for relational data storage.
 
-This will start both the backend server (port 5000) and frontend development server (port 3000).
+DevOps & Deployment
+Docker & Docker Compose: Containerized microservices architecture.
 
-## Usage
+AWS (EC2): Production backend hosting on Ubuntu.
 
-1. Create an account or login
-2. Create a new project or join an existing one
-3. Start coding collaboratively with real-time sync
-4. Use the chat feature to communicate with team members
-5. Manage project members and their roles
+Nginx: High-performance reverse proxy with SSL (Certbot).
 
-## API Endpoints
+GitHub Actions: CI/CD pipeline for automated deployments.
 
-### Authentication
-- `POST /api/auth/register` - Register a new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user info
+🏗️ Architecture Overview
+The project is deployed using a professional production architecture:
 
-### Projects
-- `GET /api/projects` - Get user's projects
-- `POST /api/projects` - Create a new project
-- `GET /api/projects/:id` - Get project details
-- `PUT /api/projects/:id` - Update project
-- `DELETE /api/projects/:id` - Delete project
-- `POST /api/projects/:id/members` - Add member to project
-- `DELETE /api/projects/:id/members/:userId` - Remove member from project
+Frontend: Hosted on Vercel, communicating over HTTPS/WSS.
 
-### Messages
-- `GET /api/projects/:id/messages` - Get project messages
+Proxy Layer: Host-level Nginx on AWS handles SSL termination and redirects traffic to the Docker network.
+
+Docker Network: * Backend Container: Running on Port 5000.
+
+Database Container: PostgreSQL running on Port 5432.
+
+🚀 Getting Started
+Prerequisites
+Node.js (v18+)
+
+Docker & Docker Compose
+
+Local Installation
+Clone the repository:
+
+Bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+Setup Environment Variables:
+Create a .env file in the backend folder:
+
+Code snippet
+DATABASE_URL="postgresql://user:password@localhost:5432/codesphere"
+PORT=5000
+Run with Docker:
+
+Bash
+docker compose up --build
+Frontend Setup:
+
+Bash
+cd frontend
+npm install
+npm start
+📝 License
+This project is for educational purposes as part of a full-stack engineering portfolio.
