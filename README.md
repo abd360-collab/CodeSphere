@@ -6,7 +6,7 @@
 [![Node](https://img.shields.io/badge/Backend-Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Docker](https://img.shields.io/badge/Infrastructure-Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 [![AWS](https://img.shields.io/badge/Cloud-AWS_EC2-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Actions](https://img.shields.io/badge/CI/CD-GitHub_Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/features/actions)
 
 ---
 
@@ -22,7 +22,7 @@
 * **💬 Integrated Project Chat:** Built-in communication channel for team collaboration.
 * **🛡️ Production Grade Security:** Fully secured with **SSL/TLS** (Certbot) managed via a host-level **Nginx** reverse proxy.
 * **🐳 Microservices Architecture:** Backend and Database are isolated using **Docker** containers for maximum stability.
-* **🚀 Professional CI/CD:** Automated deployment pipelines via **GitHub Actions** and **Vercel**.
+* **🔄 Automated CI/CD:** Seamless deployment pipeline using **GitHub Actions** for the backend and **Vercel** for the frontend.
 
 ---
 
@@ -33,6 +33,7 @@
 | **Frontend** | React.js, Tailwind CSS, Socket.io-client |
 | **Backend** | Node.js, Express, Socket.io |
 | **Database** | PostgreSQL, Prisma ORM |
+| **CI/CD** | **GitHub Actions**, Vercel |
 | **Infrastructure** | Docker, Docker Compose, AWS EC2 (Ubuntu) |
 | **Proxy & Security** | Nginx, Certbot (SSL), HTTPS/WSS Protocols |
 
@@ -43,18 +44,17 @@
 ### Production Workflow
 1.  **Traffic Entry:** Clients connect via **HTTPS/WSS** to `codesphere-api.duckdns.org`.
 2.  **Reverse Proxy (Nginx):** A host-level Nginx instance on **AWS EC2** handles SSL termination.
-3.  **Docker Network:** Traffic is securely routed to internal containers:
-    * **Backend Server:** Node.js API & WebSocket engine (Internal Port 5000).
-    * **Database:** PostgreSQL relational storage (Internal Port 5432).
+3.  **Deployment Pipeline:** * **Frontend:** Auto-deployed to Vercel on every push to `main`.
+    * **Backend:** **GitHub Actions** triggers a remote SSH script to pull the latest code and rebuild Docker containers on the EC2 instance.
 
 ---
 
 ## 📂 Project Structure
 
 ```text
+├── .github/workflows/  # GitHub Actions CI/CD configuration
 ├── backend/            # Express & WebSocket Server
 │   ├── prisma/         # Database Schema & Migrations
-│   ├── socket/         # WebSocket logic
 │   └── server.js       # Main API Entry Point
 ├── frontend/           # React App (Hosted on Vercel)
 │   ├── src/components/ # Reusable UI components
