@@ -10,6 +10,12 @@
 
 ---
 
+## 🌐 Live Demo
+
+🔗 **Application:** https://code-sphere-gcu6.vercel.app/
+
+---
+
 ## 📖 Overview
 
 **CodeSphere** is a professional-grade workspace designed for seamless pair programming. It combines a synchronized multi-user code editor with a real-time chat system, all running within a fully containerized, SSL-secured production environment.
@@ -42,10 +48,12 @@
 ## 🏗️ System Architecture
 
 ### Production Workflow
-1.  **Traffic Entry:** Clients connect via **HTTPS/WSS** to `codesphere-api.duckdns.org`.
-2.  **Reverse Proxy (Nginx):** A host-level Nginx instance on **AWS EC2** handles SSL termination.
-3.  **Deployment Pipeline:** * **Frontend:** Auto-deployed to Vercel on every push to `main`.
-    * **Backend:** **GitHub Actions** triggers a remote SSH script to pull the latest code and rebuild Docker containers on the EC2 instance.
+
+1. **Traffic Entry:** Clients connect via **HTTPS/WSS** to `codesphere-api.duckdns.org`.
+2. **Reverse Proxy (Nginx):** A host-level Nginx instance on **AWS EC2** handles SSL termination.
+3. **Deployment Pipeline:**
+   - **Frontend:** Auto-deployed to Vercel on every push to `main`.
+   - **Backend:** **GitHub Actions** triggers a remote SSH script to pull the latest code and rebuild Docker containers on the EC2 instance.
 
 ---
 
@@ -60,3 +68,4 @@
 │   ├── src/components/ # Reusable UI components
 │   └── src/pages/      # Dashboard & Project Editor
 └── docker-compose.yml  # Microservices Orchestration
+```
